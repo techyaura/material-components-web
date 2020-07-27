@@ -19,7 +19,7 @@
 //  THE SOFTWARE.
 //
 
-@use "@material/animation/variables";
+@use '@material/animation/variables';
 
 @function transition($property) {
   @return #{$property} 180ms variables.$standard-curve-timing-function;

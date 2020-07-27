@@ -20,34 +20,34 @@
 // THE SOFTWARE.
 //
 
-@use "sass:list";
-@use "sass:meta";
-@use "sass:string";
-@use "@material/animation/variables" as animation-variables;
-@use "@material/density/functions" as density-functions;
-@use "@material/dom/mixins" as dom-mixins;
-@use "@material/feature-targeting/functions" as feature-targeting-functions;
-@use "@material/feature-targeting/mixins" as feature-targeting-mixins;
-@use "@material/floating-label/mixins" as floating-label-mixins;
-@use "@material/floating-label/variables" as floating-label-variables;
-@use "@material/line-ripple/mixins" as line-ripple-mixins;
-@use "@material/list/mixins" as list-mixins;
-@use "@material/menu/mixins" as menu-mixins;
-@use "@material/menu-surface/mixins" as menu-surface-mixins;
-@use "@material/notched-outline/mixins" as notched-outline-mixins;
-@use "@material/notched-outline/variables" as notched-outline-variables;
-@use "@material/ripple/mixins" as ripple-mixins;
-@use "@material/ripple/functions" as ripple-functions;
-@use "@material/rtl/mixins" as rtl-mixins;
-@use "@material/shape/mixins" as shape-mixins;
-@use "@material/shape/functions" as shape-functions;
-@use "@material/theme/custom-properties";
-@use "@material/theme/mixins" as theme-mixins;
-@use "@material/theme/variables" as theme-variables;
-@use "@material/typography/mixins" as typography-mixins;
-@use "./helper-text" as helper-text;
-@use "./icon";
-@use "./variables";
+@use 'sass:list';
+@use 'sass:meta';
+@use 'sass:string';
+@use '@material/animation/variables' as animation-variables;
+@use '@material/density/functions' as density-functions;
+@use '@material/dom/mixins' as dom-mixins;
+@use '@material/feature-targeting/functions' as feature-targeting-functions;
+@use '@material/feature-targeting/mixins' as feature-targeting-mixins;
+@use '@material/floating-label/mixins' as floating-label-mixins;
+@use '@material/floating-label/variables' as floating-label-variables;
+@use '@material/line-ripple/mixins' as line-ripple-mixins;
+@use '@material/list/mixins' as list-mixins;
+@use '@material/menu/mixins' as menu-mixins;
+@use '@material/menu-surface/mixins' as menu-surface-mixins;
+@use '@material/notched-outline/mixins' as notched-outline-mixins;
+@use '@material/notched-outline/variables' as notched-outline-variables;
+@use '@material/ripple/ripple';
+@use '@material/ripple/ripple-theme';
+@use '@material/rtl/mixins' as rtl-mixins;
+@use '@material/shape/mixins' as shape-mixins;
+@use '@material/shape/functions' as shape-functions;
+@use '@material/theme/custom-properties';
+@use '@material/theme/mixins' as theme-mixins;
+@use '@material/theme/variables' as theme-variables;
+@use '@material/typography/mixins' as typography-mixins;
+@use './helper_text' as helper-text;
+@use './icon';
+@use './variables';
 
 @mixin core-styles($query: feature-targeting-functions.all()) {
   @include ripple($query);
@@ -256,30 +256,30 @@
 
 @mixin ripple($query: feature-targeting-functions.all()) {
   .mdc-select__anchor {
-    @include ripple-mixins.surface(
+    @include ripple.surface(
       $ripple-target: variables.$ripple-target,
       $query: $query
     );
-    @include ripple-mixins.radius-bounded(
+    @include ripple.radius-bounded(
       $ripple-target: variables.$ripple-target,
       $query: $query
     );
-    @include ripple-mixins.states-base-color(
+    @include ripple-theme.states-base-color(
       variables.$ink-color,
       $ripple-target: variables.$ripple-target,
       $query: $query
     );
-    @include ripple-mixins.states-opacities(
+    @include ripple-theme.states-opacities(
       (
-        hover: ripple-functions.states-opacity(variables.$ink-color, hover),
-        focus: ripple-functions.states-opacity(variables.$ink-color, focus),
+        hover: ripple-theme.states-opacity(variables.$ink-color, hover),
+        focus: ripple-theme.states-opacity(variables.$ink-color, focus),
       ),
       $ripple-target: variables.$ripple-target,
       $query: $query
     );
 
     #{variables.$ripple-target} {
-      @include ripple-mixins.target-common($query: $query);
+      @include ripple.target-common($query: $query);
     }
   }
 
@@ -1547,7 +1547,7 @@
     // it follows these rules to determine where its baseline is:
     // https://www.w3.org/TR/css-flexbox-1/#flex-baselines
     //
-    // In order to avoid leading icons "controlling" the baseline (since they
+    // In order to avoid leading icons 'controlling' the baseline (since they
     // are the first child), flexbox will generate a baseline from any child
     // flex items that participate in baseline alignment.
     //
@@ -1560,7 +1560,7 @@
     // making it the baseline of the container.
     // https://www.w3.org/TR/css-flexbox-1/#baseline-participation
     //
-    // For the filled variant, the pseudo ::before strut is the "largest"
+    // For the filled variant, the pseudo ::before strut is the 'largest'
     // child since the input has a height of 28px and the strut is 40px. We
     // can emulate center alignment and force the baseline to use the input
     // text by making the input the full height of the container and removing
